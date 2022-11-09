@@ -1,0 +1,58 @@
+.posts {
+    min-height:100vh;
+    background-color: green;
+    padding: 100px 0 0 0;
+
+    &__header {
+        background-color: rgb(192, 190, 189);
+        padding: 10px 40px;
+        display: flex;
+        justify-content: space-between;
+
+    }
+    &__search-wrapper {
+       display: flex;
+       justify-content: space-between;
+       width: 40%;
+       border-radius: 10px;
+    }
+
+    &__search {   
+         width: 400px;
+        height: 40px;
+        border: none;
+        border-radius: 10px;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    &__filter {
+        width: 400px;
+        height: 40px;
+        border: none;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    &__new-post {
+        border: none; 
+        color: white;
+        font-size: 20px;
+        padding: 5px 10px;
+        border-radius: 10px;
+        border: 2px solid rgba(45, 141, 131, 0.7);;
+        width: 150px;
+        margin-left: 20px;
+        background-color: rgba(45, 141, 131, 0.7);
+        text-align: center;
+    
+        &:hover {
+            background-color: rgba(12, 96, 88, 0.7);
+        }
+    }
+    &__list {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+}

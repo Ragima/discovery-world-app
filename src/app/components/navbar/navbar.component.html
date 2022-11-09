@@ -1,0 +1,25 @@
+
+<div class="app__navbar navbar">
+    <a class="navbar__icon-wrapper" routerLink="/">
+        <img class="navbar__icon" src="../../../assets/icons/trip-icon.png" alt="icon" />
+    </a>
+    <div class="navbar__rightSide">
+      <div class="navbar__user" *ngIf="isAuth; else noAuth"> 
+        <p class="navbar__user-name">{{user.firstname + " " + user.lastname}}</p>     
+        <span class="navbar__user-icon" [style.background-image]="'url(' + user.photoUrl + ')'"></span>    
+          <!-- <img class="navbar__user-icon" [src]="user.photoUrl" alt="user" /> -->
+      </div>
+    <div class="navbar__links" *ngIf="!isAuth; else logout">
+       <a class="navbar__link" routerLink="/login">Login</a>
+       <a class="navbar__link" routerLink="/register">Sign Up</a>
+    </div>
+    </div>
+</div>
+
+<ng-template #logout>
+  <a class="navbar__link" routerLink="/posts" (click)="onLogout()">Logout</a>
+</ng-template>
+
+<ng-template #noAuth>
+ <div class="navbar__user">{{null}}</div>
+</ng-template>

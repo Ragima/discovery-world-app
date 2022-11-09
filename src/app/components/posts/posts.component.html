@@ -1,0 +1,22 @@
+<div class="app__posts posts">
+    <div class="posts__header">
+        <div class="posts__search-wrapper">
+            <input class="posts__search" type="text" placeholder="search">
+            <select class="posts__filter" value="choose filter">
+              <option>By country</option>
+              <option>By date</option>
+              <option>By likes</option>            
+            </select>
+        </div>       
+        <a class="posts__new-post" routerLink="posts/add" >New Post</a>     
+    </div>
+    <div class="posts__list">
+     <ng-container *ngFor="let post of posts">
+          <div class="posts__item" *ngIf="post">
+            <app-post 
+             [post] = 'post'
+            ></app-post>
+          </div>
+     </ng-container>
+    </div>
+</div>

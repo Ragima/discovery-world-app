@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fir-crud-discovery": {
+      "hosting": {
+        "firebase-crud-discovery": [
+          "fir-crud-discovery"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fir-crud-discovery"
+  }
+}

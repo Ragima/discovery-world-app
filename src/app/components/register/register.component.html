@@ -1,0 +1,38 @@
+<form [formGroup]="registerForm" class="app__register form" (ngSubmit)="onRegister()" novalidate>
+  <p>Sign Up</p>
+
+  <div>
+    <input class="form__form-control" type="text" id="firstname" name="firstname" formControlName="firstname"
+      placeholder="Firstname">
+    <div class="form__alert"
+      *ngIf="registerForm.get('firstname')?.invalid && registerForm.get('firstname')?.touched; else errorWrapper">
+      <p>Enter first name </p>
+    </div>
+  </div>
+
+  <div>
+    <input class="form__form-control" type="text" id="lastname" name="lastname" formControlName="lastname"
+      placeholder="Lastname">
+    <div class="form__alert" *ngIf="registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.touched; else errorWrapper">
+      Enter last name
+    </div>
+  </div>
+
+  <div>
+    <input class="form__form-control" type="text" id="email" name="email" formControlName="email" placeholder="Email">
+    <div class="form__alert" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched; else errorWrapper">
+      Enter valid email</div>
+  </div>
+
+  <div>
+    <input class="form__form-control" type="password" id="password" name="password" formControlName="password"
+      placeholder="Password">
+    <div class="form__alert" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched; else errorWrapper">
+      Password must be at least 6 characters</div>
+  </div>
+
+  <button class="form__submit-btn" [disabled]="registerForm.invalid">Submit</button>
+</form>
+<ng-template #errorWrapper>
+  <div class="form__noAlert"></div>
+</ng-template>

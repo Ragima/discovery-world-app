@@ -1,0 +1,6 @@
+<div class="post" (click)="onClick(post)">
+     <p class="post__title">CityName: {{post.cityName}}</p>
+     <p class="post__description">Description:{{post.description}}</p>
+     <p class="post__tags">Tags: {{post.tags}}</p>
+     <img class="post__image" src="{{'data:image/jpg;base64,' + post.photo}}"  alt="photo" />     
+</div>

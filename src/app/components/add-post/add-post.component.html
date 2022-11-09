@@ -1,0 +1,39 @@
+<form [formGroup]="createPostForm" class="app__register form" (ngSubmit)="onSubmit()" novalidate>
+    <p>Create Post</p>  
+    <div>
+      <input class="form__form-control" type="text" id="cityName" name="cityName" formControlName="cityName"
+        placeholder="City Name">
+      <div class="form__alert"
+        *ngIf="createPostForm.get('cityName')?.invalid && createPostForm.get('cityName')?.touched; else errorWrapper">
+        <p>Enter city name</p>
+      </div>
+    </div>
+  
+    <div>
+      <textarea class="form__textarea" type="text" id="description" name="description" formControlName="description"
+        placeholder="Description"></textarea>
+      <div class="form__alert" *ngIf="createPostForm.get('description')?.invalid && createPostForm.get('description')?.touched; else errorWrapper">
+        Enter description
+      </div>
+    </div>
+  
+    <div>
+      <input class="form__form-control" type="text" id="tags" name="tags" formControlName="tags" placeholder="Tags">
+      <div class="form__alert" *ngIf="createPostForm.get('tags')?.invalid && createPostForm.get('tags')?.touched; else errorWrapper">
+        Enter tags</div>
+    </div>
+    base64 Output : <br />
+    {{base64Output}}
+    <div>
+      <input class="form__form-control" type="file" id="photoUrl" name="photoUrl" formControlName="photoUrl" onchange="console.log(event.target.files)" 
+      (change)="onFileSelected($event)"
+      placeholder="Photo">      
+      <div class="form__alert" *ngIf="createPostForm.get('password')?.invalid && createPostForm.get('password')?.touched; else errorWrapper">
+        Choose photo</div>
+    </div>
+  
+    <button class="form__submit-btn" [disabled]="createPostForm.invalid">Create</button>
+  </form>
+  <ng-template #errorWrapper>
+    <div class="form__noAlert"></div>
+  </ng-template>
