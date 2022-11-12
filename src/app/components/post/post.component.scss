@@ -114,3 +114,142 @@
       background: #fff;
       width: max-content;
   }
+////////////////////////////////////////
+  .container {
+    // background-color: #fff;
+    // border-radius: 4px;
+    // box-shadow: 0 1px 2px 0 rgba(153,153,153,0.35);
+    // padding: 1em;
+    // border: 1px solid #eee;
+    // display: block;
+    // width: 200px;
+    // margin: 0 auto;
+  }
+  
+  .label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .label-text {
+    margin-left: 0.5em;
+  }
+  
+  //The good stuff
+  // .tooltip-toggle {
+  //   cursor: pointer;
+  //   position: relative;
+  //   // svg {
+  //   //   height: 18px;
+  //   //   width: 18px;
+  //   // }
+  //   &show {
+
+  //   } 
+  //   //Tooltip text container
+  //   &::before {
+  //     position: absolute;
+  //     top: -80px;
+  //     left: -80px;
+  //     background-color: #595859;
+  //     border-radius: 5px;
+  //     color: #fff;
+  //     content: attr(aria-label); //This pulls in the text from the element with the tooltip
+  //     padding: 1rem;
+  //     text-transform: none;
+  //     transition: all 0.5s ease;
+  //     width: 160px;
+  //   }
+  
+  //   //Tooltip arrow
+  //   &::after {
+  //     position: absolute;
+  //     top: -12px;
+  //     left: 9px;
+  //     border-left: 5px solid transparent;
+  //     border-right: 5px solid transparent;
+  //     border-top: 5px solid #2B222A;
+  //     content: " ";
+  //     font-size: 0;
+  //     line-height: 0;
+  //     margin-left: -5px;
+  //     width: 0;
+  //   }
+    
+  //   //Setting up the transition
+  //   &::before,
+  //   &::after {
+  //     color: #efefef;
+  //     font-family: monospace;
+  //     font-size: 16px;
+  //     opacity: 0;
+  //     pointer-events: none;
+  //     text-align: center;
+  //   }
+    
+  //   //Triggering the transition
+  //   &:focus::before,
+  //   &:focus::after,
+  //   &:hover::before,
+  //   &:hover::after {
+  //     opacity: 1;
+  //     transition: all 0.75s ease;
+  //   }
+  // }
+
+  .popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* The actual popup */
+  .popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: rgb(228, 89, 89);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+  }
+  
+  /* Popup arrow */
+  .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Toggle this class - hide and show the popup */
+  .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+  }
+  
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }

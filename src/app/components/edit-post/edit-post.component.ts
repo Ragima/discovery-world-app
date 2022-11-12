@@ -76,10 +76,11 @@ export class EditPostComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log("hey")
     const formValue = this.editForm.value;
     const editPost = {
       ...this.post,
-      dateOfUpdate: new Date(),
+      dateOfUpdate: new Date().toString(),
       photo: this.base64Output,
       cityName: formValue.cityName,
       description: formValue.description,

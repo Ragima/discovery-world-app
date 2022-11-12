@@ -1,3 +1,5 @@
+import { user } from '@angular/fire/auth';
+import { Likes } from './../../components/models/likes';
 import { Injectable } from '@angular/core';
 import { Database, set, ref, update, onValue, remove } from '@angular/fire/database';
 import { BehaviorSubject } from 'rxjs';
@@ -20,7 +22,7 @@ export class PostsDataService {
     public database: Database,
   ) {
     const starCountRef = ref(this.database, '/posts');             //GET
-    onValue(starCountRef, (snapshot) => {
+     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       this.posts = Object.entries(data).map(item => item[1]) as Post[];
       this.posts$.next(this.posts);
@@ -28,10 +30,7 @@ export class PostsDataService {
   }
 
   public addPost(post: any) {
-    console.log('Im here', post)
-    set(ref(this.database,'posts/' + post.id), {                         //   POST
-    ...post
-    });
+      set(ref(this.database,'posts/' + post.id), post )    
     this.posts$.next(this.posts);
   }
  
@@ -46,8 +45,10 @@ export class PostsDataService {
   }
 
   public updatePost (post: Post) {
+    console.log(post)
     update(ref(this.database, 'posts/' + post.id), {                         //   UPDATE
-      ...post
+      ...post,
+      likes: post.likes
     });
  
   }
@@ -55,5 +56,14 @@ export class PostsDataService {
   public removePost(postId: number) {
     remove(ref(this.database, 'posts/' + postId));                     //DELETE
     alert('removed');
+  }
+
+  public updateLikes(post: Post, userId: number) {
+    let likeId= new Date().getUTCMilliseconds();
+    update(ref(this.database, 'posts/' + post.id + '/likes'), {                        //   UPDATE
+      [userId]: {  
+      id: likeId,
+      userId} 
+    });
   }
 }

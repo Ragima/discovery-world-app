@@ -1,0 +1,93 @@
+.posts {
+  min-height: 100vh;
+  background-color: green;
+  padding: 100px 0 0 0;
+}
+.posts__header {
+  background-color: #c0bebd;
+  padding: 10px 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.posts__search-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  border-radius: 10px;
+}
+.posts__search {
+  width: 400px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  border-radius: 10px;
+}
+.posts__filter {
+  width: 400px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+}
+.posts__new-post {
+  border: none;
+  color: white;
+  font-size: 20px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 2px solid rgba(45, 141, 131, 0.7);
+  width: 150px;
+  margin-left: 20px;
+  background-color: rgba(45, 141, 131, 0.7);
+  text-align: center;
+}
+.posts__new-post:hover {
+  background-color: rgba(12, 96, 88, 0.7);
+}
+.posts__list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tooltip {
+  display: inline-flex;
+  flex-direction: column-reverse;
+  position: relative;
+  top: 0.438rem;
+}
+.tooltip:focus .tooltip-icon, .tooltip:hover .tooltip-icon {
+  color: #383838;
+}
+.tooltip:focus ~ .tooltip-content, .tooltip:hover ~ .tooltip-content {
+  display: block;
+  z-index: 0;
+  opacity: 1;
+}
+.tooltip-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(-100%);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: #fff;
+  background: #101010;
+  border: 0.063rem solid #383838;
+  border-radius: 1.25rem 1.25rem 0 1.25rem;
+  transition: opacity ease-in-out 300ms;
+  opacity: 0;
+  z-index: -9;
+  text-align: right;
+  padding: 0.5rem 1rem;
+}
+.tooltip-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: help;
+  position: relative;
+  z-index: 1;
+  color: #ff9323;
+  transition: color ease 300ms;
+}

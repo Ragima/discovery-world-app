@@ -43,24 +43,31 @@ export class AddPostComponent implements OnInit {
     this.storageService.getItem('userData').subscribe(val => {
       const userData = JSON.parse(val);
       const { user } = userData;
+      const nowTime = new Date();
       newPost = {                         //   POST
-        id: new Date().getUTCMilliseconds(),
+          id: new Date().getUTCMilliseconds(),
           userId: userData.user.id,
-          dateOfCreate: new Date(),
-          dateOfUpdate: new Date(),
-          likes: [],
-          comments: [],
+          geoLacation: {latitude: '', longitude: ''},
+          dateOfCreate: new Date().toDateString(),
+          dateOfUpdate: new Date().toDateString(),
+          likes: [{ 
+            id: 0,
+         userId:0
+        }],
+        comments: [ { 
+          id: 0,
+          userId: 0,
+          text: ''}],
           photo: this.base64Output,
           cityName: formValue.cityName,
           description: formValue.description,
           photoUrl: formValue.photoUrl,
           tags: formValue.tags 
         }
-        console.log('create------------', formValue, newPost)
+        
+      })  
       this.postDataService.addPost(newPost)
       this.router.navigate(['/posts'])
-    
-     })  
   }
  
   onFileSelected(event: any ) {
