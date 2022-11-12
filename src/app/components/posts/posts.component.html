@@ -1,4 +1,5 @@
 <div class="app__posts posts">
+  
     <div class="posts__header">
         <div class="posts__search-wrapper">
             <input class="posts__search" type="text" placeholder="search">
@@ -8,7 +9,7 @@
               <option>By likes</option>            
             </select>
         </div>       
-        <a class="posts__new-post" routerLink="posts/add" >New Post</a>     
+        <a class="posts__new-post" href="posts/add" >New Post</a>     
     </div>
     <div class="posts__list">
      <ng-container *ngFor="let post of posts">

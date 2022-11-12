@@ -27,6 +27,7 @@ import { EditPostComponent } from './components/edit-post/edit-post.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PostComponent } from './components/post/post.component';
 import { PostsModule } from './components/posts.module';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { PostsModule } from './components/posts.module';
     PostDetailsComponent,
     EditPostComponent,
     LoginComponent,
-    PageNotFoundComponent,   
+    PageNotFoundComponent,
+    SpinnerComponent,   
   ],
   imports: [
     BrowserModule,

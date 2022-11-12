@@ -2,5 +2,28 @@
      <p class="post__title">CityName: {{post.cityName}}</p>
      <p class="post__description">Description:{{post.description}}</p>
      <p class="post__tags">Tags: {{post.tags}}</p>
-     <img class="post__image" src="{{'data:image/jpg;base64,' + post.photo}}"  alt="photo" />     
+     <img class="post__image" src="{{'data:image/jpg;base64,' + post.photo}}" alt="photo" />
+     <div class="post__icons" >
+        <span (click)="onEdit($event, post)"><img class="post__icon"   src="../../../assets/icons/edit.png" alt="edit" /></span>        
+        <span (click)="onDelete($event,post)"><img class="post__icon" src="../../../assets/icons/delete.png" alt="delete" /></span> 
+        <span (click)="$event.stopPropagation()"><img class="post__icon" src="../../../assets/icons/comments.png" alt="comments" /></span>
+        <span (click)="onLikes($event)"> <img class="post__icon" src="../../../assets/icons/likes.png" alt="likes" /></span>
+     </div>
 </div>
+
+
+<!-- <div class="services-items" (click)="onClick(post)">
+     <div class="services-item"> HEYYYYYY
+          <div class="image-wrapper">
+               <img class="services-item__img" src="{{'data:image/jpg;base64,' + post.photo}}" alt="photo">
+          </div>
+          <img class="services-item__img" src="https://picsum.photos/id/1000/400/200">
+          <div class="services-item__content">
+               <div class="services-item__title"> <a href=""> One card </a></div>
+              <div class="services-item__subtitle"> Desc one</div>
+               <p class="services-item__title"><a href=""> CityName: {{post.cityName}}</a></p>
+               <div class="services-item__title">Description:{{post.description}}</div>
+               <div class="services-item__subtitle">Tags: {{post.tags}}</div>
+          </div>
+     </div>
+</div> -->

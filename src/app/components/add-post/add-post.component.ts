@@ -47,6 +47,7 @@ export class AddPostComponent implements OnInit {
         id: new Date().getUTCMilliseconds(),
           userId: userData.user.id,
           dateOfCreate: new Date(),
+          dateOfUpdate: new Date(),
           likes: [],
           comments: [],
           photo: this.base64Output,

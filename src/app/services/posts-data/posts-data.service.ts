@@ -28,6 +28,7 @@ export class PostsDataService {
   }
 
   public addPost(post: any) {
+    console.log('Im here', post)
     set(ref(this.database,'posts/' + post.id), {                         //   POST
     ...post
     });
@@ -43,8 +44,16 @@ export class PostsDataService {
   this.post$.next(this.post);
 });
   }
-  public edirPost () {}
 
-  public removePost() {}
+  public updatePost (post: Post) {
+    update(ref(this.database, 'posts/' + post.id), {                         //   UPDATE
+      ...post
+    });
+ 
+  }
 
+  public removePost(postId: number) {
+    remove(ref(this.database, 'posts/' + postId));                     //DELETE
+    alert('removed');
+  }
 }
