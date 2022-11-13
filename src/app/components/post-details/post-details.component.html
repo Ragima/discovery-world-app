@@ -1,7 +1,16 @@
-<div class="app__detailed-post detailed-post">
-    <p class="detailed-post__cityName">{{post.cityName}}</p>
-    <p class="detailed-post__description">{{post.description}}</p>
-    <p class="detailed-post__tags" >{{post.tags}}</p>
-    <img src="{{'data:image/jpg;base64,' + post.photo}}" alt="photo" />
+<div class="app__detailed-post detailed-post">  
+    <a routerLink="/posts">Back</a>
+    <div class="detailed-post__wrapper">
+        <div class="detailed-post__content">
+            <p class="detailed-post__cityName">{{post.cityName}}</p>
+            <div class="detailed-post__tags" >
+                <p class="detailed-post__tag" *ngFor="let tag of tags">{{tag}}</p>
+            </div>
+            <p class="detailed-post__description">{{post.description}}</p>
+            <span class="detailed-post__created">Created by:<p>{{postCreatedUser?.firstname + postCreatedUser?.lastname}}</p></span>
+        </div>
+        <div class="detailed-post__image">
+            <img src="{{'data:image/jpg;base64,' + post.photo}}" alt="photo" />
+        </div>
+    </div>
 </div>
-<a routerLink="/posts">Back</a>

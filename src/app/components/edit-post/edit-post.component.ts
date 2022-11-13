@@ -37,7 +37,7 @@ export class EditPostComponent implements OnInit {
       description: new FormControl('', [Validators.required]),
       tags: new FormControl('', [Validators.required]),
       photoUrl: new FormControl('', [Validators.required]),
-    })
+    })  
    }
 
   ngOnInit(): void {

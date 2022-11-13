@@ -1,5 +1,3 @@
-import { user } from '@angular/fire/auth';
-import { Likes } from './../../components/models/likes';
 import { Injectable } from '@angular/core';
 import { Database, set, ref, update, onValue, remove } from '@angular/fire/database';
 import { BehaviorSubject } from 'rxjs';

@@ -13,6 +13,7 @@ import { User } from '../models/user';
 })
 export class PostComponent implements OnInit {
   public isAuth: boolean = false;
+  public tags: string[];
   public likes: any = [];
   public isLiked: boolean = this.likes.find((item:any) => item.userId === this.user.id) === -1 ? false : true;
 
@@ -33,8 +34,7 @@ public user: User;
   ngOnInit(): void {
     console.log('user----', this.user);
     this.likes = Object.values(this.post.likes);
-
-   
+    this.tags = this.post.tags.split(',').map(tag  => `#${tag}`);   
   }
 
   onClick(post: Post) {
