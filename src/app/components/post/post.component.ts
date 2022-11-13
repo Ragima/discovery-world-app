@@ -5,6 +5,7 @@ import { Post } from '../models/post';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -66,11 +67,36 @@ public user: User;
 }
 
 if(this.user.id) {
-  this.isLiked = !this.isLiked;
-  this.postsDataService.updateLikes(newPost, this.user.id);
+  // this.isLiked = !this.isLiked;   
+  let filteredLikes = this.likes.filter((item:any) => item.userId !== this.user.id);
+  let item = this.likes.find((item:any) => item.userId === this.user.id);
+  
+  console.log(this.isLiked)
+  console.log('filteredLIkes', filteredLikes);
+  console.log('likesArray', this.likes);
+  console.log('findMethod', this.likes.find((item:any) => item.userId === this.user.id));
+  
+
+  let obj: any;
+  if(item && item !== -1) {
+    let obj = this.toObject(filteredLikes);
+    this.postsDataService.removeLikes(post, obj, this.user.id);
+    this.isLiked = false;
+  } else { 
+    this.postsDataService.updateLikes(newPost, this.user.id);
+    this.isLiked = true;
+  }
+
     return;
   }
   parent.childNodes[0].classList.toggle('show');
  }
 
+ public toObject(arr: Likes[]) {
+  let obj = {} as any;
+  for(let i = 0; i < arr.length; i++) {
+  obj[arr[i]?.userId] = arr[i]
+  }
+  return obj;
+ }
 }

@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { Database, set, ref, update, onValue, remove } from '@angular/fire/database';
 import { BehaviorSubject } from 'rxjs';
@@ -22,8 +23,10 @@ export class PostsDataService {
     const starCountRef = ref(this.database, '/posts');             //GET
      onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
-      this.posts = Object.entries(data).map(item => item[1]) as Post[];
-      this.posts$.next(this.posts);
+      if(data) {
+        this.posts = Object.entries(data).map(item => item[1]) as Post[];
+        this.posts$.next(this.posts);        
+      }
     });
   }
 
@@ -63,5 +66,9 @@ export class PostsDataService {
       id: likeId,
       userId} 
     });
+  }
+
+  public removeLikes(post: Post, likes: any, userId: number) {
+    remove(ref(this.database, 'posts/' + post.id + '/likes/' + userId));
   }
 }
