@@ -1,13 +1,48 @@
-<div class="app__detailed-post detailed-post">  
+<div class="app__detailed-post detailed-post">
     <a routerLink="/posts">Back</a>
     <div class="detailed-post__wrapper">
         <div class="detailed-post__content">
             <p class="detailed-post__cityName">{{post.cityName}}</p>
-            <div class="detailed-post__tags" >
+            <div class="detailed-post__tags">
                 <p class="detailed-post__tag" *ngFor="let tag of tags">{{tag}}</p>
             </div>
             <p class="detailed-post__description">{{post.description}}</p>
-            <span class="detailed-post__created">Created by:<p>{{postCreatedUser?.firstname + postCreatedUser?.lastname}}</p></span>
+            <p class="detailed-post__created-title">Created by: </p>
+            <span class="detailed-post__created">
+                <div class="detailed-post__createdIcon"
+                [style.background-image]="'url(' + postCreatedUser?.photoUrl + ')'">
+              </div>
+                <p>{{postCreatedUser?.firstname + postCreatedUser?.lastname}}</p>
+            </span>
+            <p class="detailed-post__date">{{post.dateOfCreate | dateAgo}}</p>
+            <hr style="color:gray;background-color:gray">
+            <div class="detailed-post__comments">
+                <p class="comments-title">Comments</p>            
+                <div class="detailed-post__comments-content">
+                    <div class="detailed-post__comments-item"> 
+                        Hey Im here                        
+                    </div>
+                    <div class="detailed-post__comments-item"> 
+                        Hey Im here                        
+                    </div>
+                    <div class="detailed-post__comments-item"> 
+                        Hey Im here                        
+                    </div>
+                </div> 
+            </div>
+            <div class="detailed-post__icons" >
+                <!-- <span (click)="$event.stopPropagation()"><img class="detailed-post__icon" src="../../../assets/icons/comments.png" alt="comments" />{{post.comments.length-1}}</span> -->
+                <!-- <div class="container">
+                     <div class="label">
+                          <span (click)="onLikes($event)" class="tooltip-toggle popup" (click)="onLikesClick($event, post)" aria-label="Sample text for your tooltip!" tabindex="0">
+                               <span class="popuptext" id="myPopup">Please register or login</span>
+                              <img class="detailed-post__icon" [attr.src]= "[isLiked === true ? '../../../assets/liked.png' : '../../../assets/unliked.png']"  alt="likes" />{{this.likes.length - 1}}
+                            </span>        
+                     </div>
+                </div> -->
+                <span *ngIf="user.id" (click)="onEdit($event, post)"><img class="detailed-post__icon"   src="../../../assets/icons/edit.png" alt="edit" /></span>        
+                <span *ngIf="user.id" (click)="onDelete($event,post)"><img class="detailed-post__icon" src="../../../assets/icons/delete.png" alt="delete" /></span> 
+           </div>
         </div>
         <div class="detailed-post__image">
             <img src="{{'data:image/jpg;base64,' + post.photo}}" alt="photo" />

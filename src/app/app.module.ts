@@ -28,6 +28,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { PostComponent } from './components/post/post.component';
 import { PostsModule } from './components/posts.module';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { LikesComponent } from './components/likes/likes.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     EditPostComponent,
     LoginComponent,
     PageNotFoundComponent,
-    SpinnerComponent,   
+    SpinnerComponent,
+    DateAgoPipe,
+    LikesComponent,   
   ],
   imports: [
     BrowserModule,

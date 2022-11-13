@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { PostsDataService } from 'src/app/services/posts-data/posts-data.service';
 import { StorageService } from 'src/app/services/storage-service/storage.service';
@@ -32,6 +32,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private userDataService: UserDataService,
     private changeDetectorRef: ChangeDetectorRef,
+    private router: Router,
     ) { 
 
       this.storageService.getItem('userData').subscribe(val => {
@@ -58,8 +59,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     }, (err) => {
       this.errorMessage = `Error: ${err}`;
     });
-     this.postCreatedUser = this.users.find(user => user.id === this.post.userId);
-
+    
     this.tags = this.post?.tags?.split(',').map(tag  => `#${tag}`);   
     this.loading = true;    
     this.activatedRoute.paramMap.subscribe((param) => {
@@ -67,10 +67,11 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     });
     
     if(this.postId) {
-     this.postsDataService.getPost(this.postId);
-     this.postsDataService.post$
-     .subscribe(val => {
-      this.post = _.cloneDeep(val);
+      this.postsDataService.getPost(this.postId);
+      this.postsDataService.post$
+      .subscribe(val => {
+        this.post = _.cloneDeep(val);
+        this.postCreatedUser = this.users.find(user => user.id === this.post.userId);
       this.changeDetectorRef.markForCheck();
       this.loading = false;
      }, (err) => {
@@ -79,9 +80,17 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     } else {
       console.log('else')
     }
-
-    console.log('users---------->', this.users, this.user)
   }
+
+  onEdit($event: any, post: Post) {
+    $event.stopPropagation();
+    this.router.navigate([`posts/edit/${post.id}`])
+ }
+
+  onDelete($event: any,post: Post) {
+  $event.stopPropagation();
+  this.postsDataService.removePost(this.post.id);
+ }
  
   public ngOnDestroy(): void {
     this.destroy$.next();
