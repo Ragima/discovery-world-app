@@ -24,6 +24,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   public user: User;
   public postCreatedUser: any;
   public comments: any = [];
+  public commentCreatedUser: any;
 
   private destroy$: Subject<void> = new Subject<void>();
 
@@ -56,7 +57,6 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if(this.post) {
-      console.log(this.post)
       this.comments = this.post.comments && Object.values(this.post.comments); 
     }
     this.userDataService.users$.subscribe(val => {
@@ -64,7 +64,10 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     }, (err) => {
       this.errorMessage = `Error: ${err}`;
     });
-    
+    this.comments = this.comments?.map((com: any)=> {
+       let user = this.users.find(u => u.id === com.userId);
+        return {...com, user}
+    }).sort((a: any, b: any) =>  b. dateOfCreate - a.dateOfCreate)
     this.tags = this.post?.tags?.split(',').map(tag  => `#${tag}`);   
     this.loading = true;    
     this.activatedRoute.paramMap.subscribe((param) => {
@@ -85,6 +88,11 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     } else {
       console.log('else')
     }
+  }
+
+
+  filterUser(comment: any) {
+    this.commentCreatedUser =  this.users && this.users.find(user=> this.user.id === comment.userId);   
   }
 
   onEdit($event: any, post: Post) {

@@ -30,6 +30,7 @@ import { PostsModule } from './components/posts.module';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { LikesComponent } from './components/likes/likes.component';
+import { FilterUserPipe } from './pipes/filter-user.pipe';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { LikesComponent } from './components/likes/likes.component';
     PageNotFoundComponent,
     SpinnerComponent,
     DateAgoPipe,
-    LikesComponent,   
+    LikesComponent,
+    FilterUserPipe,   
   ],
   imports: [
     BrowserModule,

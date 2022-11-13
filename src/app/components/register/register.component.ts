@@ -42,7 +42,6 @@ export class RegisterComponent implements OnInit {
 
   onRegister(){
     const registerObj = this.registerForm.value;
-    console.log(this.registerForm.value);
     const newUser = {
       id: new Date().getUTCMilliseconds(),
       ...this.registerForm.value,

@@ -80,8 +80,8 @@
 
     &__createdIcon {
         margin-right: 10px;
-        width:  45px;
-        height: 45px;
+        width:  35px;
+        height: 35px;
         border-radius: 50%;
         background-size: cover;
     }
@@ -89,15 +89,66 @@
    &__comments-content {
      height: 200px;
      width: 100%;
+     overflow-y: auto;
+     scrollbar-color: rgba(16, 41, 70, 0.3) transparent;
+     scrollbar-width: thin;
+ 
+     &::-webkit-scrollbar-track {
+       background-color: transparent;
+     }
+ 
+     &::-webkit-scrollbar {
+       background-color: transparent;
+       width: 6px;
+       height: 6px;
+     }
+ 
+     &::-webkit-scrollbar-thumb {
+       background-color: rgba(16, 41, 70, 0.3);
+       border-radius: 6px;
+     }
    }
    
    &__comments-item {
-
    }
+
+   &__comments-column {
+    display: flex;
+    flex-direction: column;
+   }
+
+   &__comments-row {
+    display: flex;
+    justify-items: last baseline;
+    p {
+        display: flex;
+        align-items: flex-end
+    }
+    p:first-child {
+        margin-right: 5px;
+    font-size: 14px;
+    }
+    p:last-child {
+        font-size: 12px;
+        color:rgba(106, 104, 104, 0.8);
+        }
+   }
+
+   &__comments-date {
+    float: left;
+    font-size: 14px;
+   }
+
+   &__comments-text {
+    font-size: 14px;
+    padding-left: 55px;
+   }
+
    &__icons {
     width: 100%;
     display: flex;
     text-align: end;
+    margin-top: 10px;
    }
 
    &__icon {

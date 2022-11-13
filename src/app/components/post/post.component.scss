@@ -191,11 +191,11 @@ $textColor: rgba(58, 56, 56, 0.54);
     width: 22.5vmin;
     border-bottom: 1px solid rgba(106, 104, 104, 0.54);
     outline: none;
-    scrollbar-color: rgba(16, 41, 70, 0.3) transparent;
-    scrollbar-width: thin;
     padding: 0;
     margin-top: 20px;
     padding: 0 10px;
+    scrollbar-color: rgba(16, 41, 70, 0.3) transparent;
+    scrollbar-width: thin;
 
     &::-webkit-scrollbar-track {
       background-color: transparent;

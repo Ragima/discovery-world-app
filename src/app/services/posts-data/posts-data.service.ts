@@ -73,10 +73,12 @@ export class PostsDataService {
 
   public addComment(post: Post, userId: number, newComment: string) {
     let commentId= new Date().getUTCMilliseconds();
+    let dateOfCreate = new Date().toString();
     update(ref(this.database, 'posts/' + post.id + '/comments'), {                        //   UPDATE
       [commentId]: {  
       id: commentId,
       userId,
+      dateOfCreate: dateOfCreate,
       text: newComment} 
     });
   }

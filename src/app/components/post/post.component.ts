@@ -30,14 +30,12 @@ public user: User;
     private router: Router,
     private postsDataService: PostsDataService
     ) { 
-      console.log(this.newComment)
   }
 
   ngOnInit(): void {
     this.likes = Object.values(this.post.likes);
     this.comments = Object.values(this.post.comments);
     this.tags = this.post.tags.split(',').map(tag  => `#${tag}`);
-    console.log(this.comments) 
   }
 
   onCancelClick($event: any) {
