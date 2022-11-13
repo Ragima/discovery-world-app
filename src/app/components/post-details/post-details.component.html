@@ -19,15 +19,13 @@
             <div class="detailed-post__comments">
                 <p class="comments-title">Comments</p>            
                 <div class="detailed-post__comments-content">
-                    <div class="detailed-post__comments-item"> 
-                        Hey Im here                        
+                    <div class="detailed-post__comments-item" *ngFor="let comment of comments"> 
+                        <div class="detailed-post__createdIcon"
+                        [style.background-image]="'url(' + (users.find(i => i.id === comment.userId))?.photoUrl + ')'">
+                      </div>
+                      {{comment.text}}                    
                     </div>
-                    <div class="detailed-post__comments-item"> 
-                        Hey Im here                        
-                    </div>
-                    <div class="detailed-post__comments-item"> 
-                        Hey Im here                        
-                    </div>
+                  
                 </div> 
             </div>
             <div class="detailed-post__icons" >

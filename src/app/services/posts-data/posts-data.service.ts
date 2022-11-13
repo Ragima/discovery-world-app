@@ -46,7 +46,6 @@ export class PostsDataService {
   }
 
   public updatePost (post: Post) {
-    console.log(post)
     update(ref(this.database, 'posts/' + post.id), {                         //   UPDATE
       ...post,
       likes: post.likes
@@ -70,5 +69,15 @@ export class PostsDataService {
 
   public removeLikes(post: Post, likes: any, userId: number) {
     remove(ref(this.database, 'posts/' + post.id + '/likes/' + userId));
+  }
+
+  public addComment(post: Post, userId: number, newComment: string) {
+    let commentId= new Date().getUTCMilliseconds();
+    update(ref(this.database, 'posts/' + post.id + '/comments'), {                        //   UPDATE
+      [commentId]: {  
+      id: commentId,
+      userId,
+      text: newComment} 
+    });
   }
 }

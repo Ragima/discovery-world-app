@@ -23,6 +23,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   public users: User[] = [];
   public user: User;
   public postCreatedUser: any;
+  public comments: any = [];
 
   private destroy$: Subject<void> = new Subject<void>();
 
@@ -54,6 +55,10 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if(this.post) {
+      console.log(this.post)
+      this.comments = this.post.comments && Object.values(this.post.comments); 
+    }
     this.userDataService.users$.subscribe(val => {
       this.users = val
     }, (err) => {

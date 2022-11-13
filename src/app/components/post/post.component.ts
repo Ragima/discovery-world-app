@@ -2,10 +2,8 @@ import { Likes } from './../models/likes';
 import { PostsDataService } from 'src/app/services/posts-data/posts-data.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Post } from '../models/post';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
-import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -17,6 +15,9 @@ export class PostComponent implements OnInit {
   public tags: string[];
   public likes: any = [];
   public isLiked: boolean = this.likes.find((item:any) => item.userId === this.user.id) === -1 ? false : true;
+  public newComment:string = '';
+  public comments: any = [];
+  public isHidden: boolean = true;
 
 @Input()
 public post: Post;
@@ -26,16 +27,32 @@ public post: Post;
 public user: User;
 
   constructor(
-    private _sanitizer: DomSanitizer,
     private router: Router,
     private postsDataService: PostsDataService
     ) { 
+      console.log(this.newComment)
   }
 
   ngOnInit(): void {
-    console.log('user----', this.user);
     this.likes = Object.values(this.post.likes);
-    this.tags = this.post.tags.split(',').map(tag  => `#${tag}`);   
+    this.comments = Object.values(this.post.comments);
+    this.tags = this.post.tags.split(',').map(tag  => `#${tag}`);
+    console.log(this.comments) 
+  }
+
+  onCancelClick($event: any) {
+    this.isHidden = true;
+    this.onStopPropogation($event);
+    this.newComment = '';
+  }
+  onCommentClick($event: any) {
+    this.postsDataService.addComment(this.post, this.user.id, this.newComment )
+    this.onStopPropogation($event);
+  }
+  
+  onCommentIconClick($event: any) {
+    this.isHidden = !this.isHidden;
+    this.onStopPropogation($event);
   }
 
   onClick(post: Post) {
@@ -52,7 +69,7 @@ public user: User;
   this.postsDataService.removePost(this.post.id);
  }
  
- onLikes($event: any) {
+ onStopPropogation($event: any) { 
   $event.stopPropagation();
  }
 
@@ -66,37 +83,40 @@ public user: User;
   }]
 }
 
+
+
+
 if(this.user.id) {
   // this.isLiked = !this.isLiked;   
   let filteredLikes = this.likes.filter((item:any) => item.userId !== this.user.id);
   let item = this.likes.find((item:any) => item.userId === this.user.id);
   
-  console.log(this.isLiked)
-  console.log('filteredLIkes', filteredLikes);
-  console.log('likesArray', this.likes);
-  console.log('findMethod', this.likes.find((item:any) => item.userId === this.user.id));
+  // console.log(this.isLiked)
+  // console.log('filteredLIkes', filteredLikes);
+  // console.log('likesArray', this.likes);
+  // console.log('findMethod', this.likes.find((item:any) => item.userId === this.user.id));
   
 
   let obj: any;
   if(item && item !== -1) {
     let obj = this.toObject(filteredLikes);
     this.postsDataService.removeLikes(post, obj, this.user.id);
-    this.isLiked = false;
   } else { 
     this.postsDataService.updateLikes(newPost, this.user.id);
-    this.isLiked = true;
   }
-
     return;
   }
   parent.childNodes[0].classList.toggle('show');
  }
 
- public toObject(arr: Likes[]) {
+  toObject(arr: Likes[]) {
   let obj = {} as any;
   for(let i = 0; i < arr.length; i++) {
   obj[arr[i]?.userId] = arr[i]
   }
   return obj;
  }
+
+
+
 }
