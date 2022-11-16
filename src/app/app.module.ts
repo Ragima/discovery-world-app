@@ -28,7 +28,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { PostComponent } from './components/post/post.component';
 import { PostsModule } from './components/posts.module';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { PostpaginComponent } from './components/postpagin/postpagin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     EditPostComponent,
     LoginComponent,
     PageNotFoundComponent,
-    SpinnerComponent,   
+    SpinnerComponent,
+    PostpaginComponent, 
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    HttpClientModule,
+    NgxPaginationModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()),
     provideAuth(() => getAuth()),

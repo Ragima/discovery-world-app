@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row justify-content-between">
+      <div class="col-4">
+        <h5 class="h3">NGX Pagination</h5>
+      </div>
+      <div class="col-2">
+        <div class="row g-3 align-items-center">
+          <div class="col-auto">
+          <label class="control-label" for="noOfRows">No. of Rows</label>
+        </div>
+        <div class="col-auto">
+          <select name="noOfRows" (change)="onTableSizeChange($event)" class="form-select form-select-sm">
+            <option *ngFor="let size of tableSize" [ngValue]="size">
+              {{ size }}
+            </option>
+          </select>
+        </div>
+      </div>
+    
+      </div>
+    </div>
+    <br>
+    <table class="table  table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Id</th>
+          <th>Firt Name</th>
+          <th>Last Name</th>
+          <th>Birth Date</th>
+          <th>Mobile Number</th>
+          <th>Email</th>
+          <th>Registration Date</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let customer of customers | paginate : pagingConfig; let i = index">
+    
+        <!-- <tr *ngFor="let customer of customers"> -->
+        <td>{{ customer.id }}</td>
+        <td>{{ customer.firstName }}</td>
+        <td>{{ customer.lastName }}</td>
+        <td>{{ customer.birthday | date : 'MMMM dd,yyyy' }}</td>
+        <td>{{ customer.mobileNumber }}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.createdOn | date : 'MM/dd/yyyy' }}</td>
+      </tr>
+    
+    </table>
+    <div class="d-flex justify-content-center">
+      <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)">
+      </pagination-controls>
+    </div>
+    </div>
+    
+
